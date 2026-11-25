@@ -1,0 +1,107 @@
+[
+  {
+    "name": "trfitness.ca",
+    "url": "https://trfitness.ca/",
+    "expect": "up"
+  },
+  {
+    "name": "www.trfitness.ca",
+    "url": "https://www.trfitness.ca/",
+    "expect": "up"
+  },
+  {
+    "name": "new.trsupplements.ca",
+    "url": "https://new.trsupplements.ca/",
+    "expect": "up"
+  },
+  {
+    "name": "trsupplements.ca",
+    "url": "https://trsupplements.ca/",
+    "expect": "up"
+  },
+  {
+    "name": "www.trsupplements.ca",
+    "url": "https://www.trsupplements.ca/",
+    "expect": "up"
+  },
+  {
+    "name": "trsupplements api health",
+    "url": "https://new.trsupplements.ca/api/v1/healthz",
+    "expect": "healthy"
+  },
+  {
+    "name": "app.evertap.ca",
+    "url": "https://app.evertap.ca/",
+    "expect": "up"
+  },
+  {
+    "name": "evergreenseniorcare.ca",
+    "url": "https://evergreenseniorcare.ca/",
+    "expect": "up"
+  },
+  {
+    "name": "www.evergreenseniorcare.ca",
+    "url": "https://www.evergreenseniorcare.ca/",
+    "expect": "up"
+  },
+  {
+    "name": "id.xenkloud.com",
+    "url": "https://id.xenkloud.com/",
+    "expect": "up"
+  },
+  {
+    "name": "xk-id api health",
+    "url": "https://id.xenkloud.com/healthz",
+    "expect": "healthy"
+  },
+  {
+    "name": "test.xenkloud.com",
+    "url": "https://test.xenkloud.com/",
+    "expect": "up"
+  },
+  {
+    "name": "www.xenkloud.com",
+    "url": "https://www.xenkloud.com/",
+    "expect": "up"
+  },
+  {
+    "name": "xenkloud.com",
+    "url": "https://xenkloud.com/",
+    "expect": "up"
+  },
+  {
+    "name": "emitemail.com",
+    "url": "https://emitemail.com/",
+    "expect": "up"
+  },
+  {
+    "name": "www.emitemail.com",
+    "url": "https://www.emitemail.com/",
+    "expect": "up"
+  },
+  {
+    "name": "console.xenkloud.com",
+    "url": "https://console.xenkloud.com/",
+    "expect": "up"
+  },
+  {
+    "name": "api.xenkloud.com",
+    "url": "https://api.xenkloud.com/",
+    "expect": "up"
+  },
+  {
+    "name": "xksites.ca",
+    "url": "https://xksites.ca/",
+    "expect": "up"
+  },
+  {
+    "name": "www.xksites.ca",
+    "url": "https://www.xksites.ca/",
+    "expect": "up"
+  },
+  {
+    "name": "sites api health",
+    "url": "https://api.xenkloud.com/healthz",
+    "expect": "healthy"
+  }
+]
