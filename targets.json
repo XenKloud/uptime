@@ -1,15 +1,5 @@
 [
   {
-    "name": "trfitness.ca",
-    "url": "https://trfitness.ca/",
-    "expect": "up"
-  },
-  {
-    "name": "www.trfitness.ca",
-    "url": "https://www.trfitness.ca/",
-    "expect": "up"
-  },
-  {
     "name": "new.trsupplements.ca",
     "url": "https://new.trsupplements.ca/",
     "expect": "up"
