@@ -1,0 +1,126 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Xenkloud Status</title>
+<meta name="description" content="Live status and uptime of Xenkloud services.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='226 126 384 386'%3E%3Cg fill='%23053ba4' stroke='%23053ba4' stroke-linejoin='round'%3E%3Cpath d='M252 230 418 152 584 230 418 308Z' stroke-width='22'/%3E%3Cpath d='M244 318 262 298 418 344 574 298 592 318 418 402Z' stroke-width='12'/%3E%3Cpath d='M244 406 262 386 418 432 574 386 592 406 418 490Z' stroke-width='12'/%3E%3C/g%3E%3C/svg%3E">
+<style>
+:root {
+  --page: #f4f6f9; --card: #fff; --ink: #0f1722; --muted: #4a5768; --faint: #6b7787; --line: #e2e6ea;
+  --blue: #053ba3; --ok: #1a7f4b; --ok-bar: #2fa36b; --ok-bg: #1a7f4b; --down-bg: #c0362c; --minor: #c98a0b; --down: #c0362c; --none: #dde2e8;
+  color-scheme: light;
+}
+@media (prefers-color-scheme: dark) {
+  :root { --page: #0c1119; --card: #141b26; --ink: #e8edf3; --muted: #a9b4c2; --faint: #8592a3; --line: #263142;
+    --blue: #6f9cf0; --ok: #4cc68a; --ok-bar: #34a56e; --ok-bg: #19653f; --down-bg: #a3302a; --minor: #e0a52a; --down: #ef6b5f; --none: #2a3444; color-scheme: dark; }
+}
+* { box-sizing: border-box; }
+body { margin: 0; background: var(--page); color: var(--ink); font: 15px/1.5 system-ui, -apple-system, "Segoe UI", Roboto, sans-serif; }
+main { max-width: 860px; margin: 0 auto; padding: 32px max(16px, env(safe-area-inset-right)) 48px max(16px, env(safe-area-inset-left)); display: grid; gap: 24px; }
+header { display: flex; align-items: center; justify-content: space-between; gap: 12px; flex-wrap: wrap; }
+.brand { display: flex; align-items: center; gap: 10px; color: var(--ink); text-decoration: none; font-size: 20px; }
+.brand svg { width: 28px; height: 28px; }
+.brand b { font-weight: 600; }
+.brand span { color: var(--faint); }
+header a.home { color: var(--blue); text-decoration: none; font-size: 14px; }
+.banner { border-radius: 10px; padding: 18px 20px; font-size: 18px; font-weight: 600; color: #fff; background: var(--ok-bg); }
+.banner.down { background: var(--down-bg); }
+.banner.wait { background: var(--faint); }
+section { background: var(--card); border: 1px solid var(--line); border-radius: 10px; }
+h2 { font-size: 13px; letter-spacing: .06em; text-transform: uppercase; color: var(--faint); margin: 0; padding: 14px 20px; border-bottom: 1px solid var(--line); font-weight: 600; }
+.comp { padding: 16px 20px; display: grid; gap: 10px; }
+.comp + .comp { border-top: 1px solid var(--line); }
+.row { display: flex; justify-content: space-between; align-items: baseline; gap: 12px; }
+.row > div:first-child { min-width: 0; }
+.state { white-space: nowrap; }
+.name { font-weight: 600; }
+.about { color: var(--muted); font-size: 13px; }
+.state { font-size: 14px; font-weight: 600; color: var(--ok); }
+.state.down { color: var(--down); }
+.bars { display: flex; gap: 2px; height: 30px; }
+.bars i { flex: 1; border-radius: 2px; background: var(--ok-bar); min-width: 0; }
+.bars i.minor { background: var(--minor); }
+.bars i.major { background: var(--down); }
+.bars i.none { background: var(--none); }
+.scale { display: flex; justify-content: space-between; color: var(--faint); font-size: 12px; }
+.inc { padding: 16px 20px; display: grid; gap: 6px; }
+.inc + .inc { border-top: 1px solid var(--line); }
+.inc .when { color: var(--faint); font-size: 13px; }
+.inc .tag { font-size: 12px; font-weight: 600; text-transform: uppercase; letter-spacing: .04em; color: var(--ok); }
+.inc .tag.open { color: var(--down); }
+.inc p { margin: 0; white-space: pre-wrap; overflow-wrap: anywhere; }
+.inc .up { border-left: 2px solid var(--line); padding-left: 12px; display: grid; gap: 2px; }
+.empty { padding: 16px 20px; color: var(--muted); margin: 0; }
+footer { color: var(--faint); font-size: 13px; display: grid; gap: 4px; }
+@media (max-width: 560px) { .bars i:nth-child(-n+60) { display: none; } .scale .long { display: none; } }
+@media (min-width: 561px) { .scale .short { display: none; } }
+</style>
+</head>
+<body>
+<main>
+  <header>
+    <a class="brand" href="https://www.xenkloud.com/">
+      <svg viewBox="226 126 384 386" aria-hidden="true"><g fill="#053ba4" stroke="#053ba4" stroke-linejoin="round"><path d="M252 230 418 152 584 230 418 308Z" stroke-width="22"/><path d="M244 318 262 298 418 344 574 298 592 318 418 402Z" stroke-width="12"/><path d="M244 406 262 386 418 432 574 386 592 406 418 490Z" stroke-width="12"/></g></svg>
+      <b>Xenkloud</b> <span>Status</span>
+    </a>
+    <a class="home" href="https://console.xenkloud.com/">Console →</a>
+  </header>
+  <div id="banner" class="banner wait">Checking…</div>
+  <section><h2 id="region">Services</h2><div id="components"></div></section>
+  <section><h2>Incidents</h2><div id="incidents"></div></section>
+  <footer>
+    <div>Every service is checked every 5 minutes from outside our data centre. A service counts as down after two failed checks 20 seconds apart.</div>
+    <div id="since"></div>
+  </footer>
+</main>
+<script>
+const esc = (s) => String(s ?? "").replace(/[&<>"']/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" })[c]);
+const day = (iso) => new Date(iso + "T12:00:00Z").toLocaleDateString(undefined, { month: "short", day: "numeric", year: "numeric", timeZone: "UTC" });
+const when = (iso) => new Date(iso).toLocaleString(undefined, { month: "short", day: "numeric", hour: "numeric", minute: "2-digit", timeZoneName: "short" });
+const mins = (m) => (m < 60 ? `${m} min` : `${Math.floor(m / 60)} h ${m % 60} min`);
+
+function bar(d) {
+  if (d.down_minutes === undefined) return `<i class="none" title="${day(d.date)}: before monitoring began"></i>`;
+  if (!d.down_minutes) return `<i title="${day(d.date)}: no downtime"></i>`;
+  return `<i class="${d.down_minutes < 30 ? "minor" : "major"}" title="${day(d.date)}: down ${mins(d.down_minutes)}"></i>`;
+}
+
+function render(s) {
+  const down = s.components.filter((c) => c.status === "down");
+  const banner = document.getElementById("banner");
+  banner.className = down.length ? "banner down" : "banner";
+  banner.textContent = down.length ? `${down.map((c) => c.name).join(", ")} ${down.length > 1 ? "are" : "is"} down` : "All systems operational";
+  document.getElementById("region").textContent = `Services · ${s.region}`;
+  document.getElementById("components").innerHTML = s.components.map((c) => `
+    <div class="comp">
+      <div class="row">
+        <div><div class="name">${esc(c.name)}</div><div class="about">${esc(c.about)}</div></div>
+        <div class="state ${c.status === "down" ? "down" : ""}">${c.status === "down" ? "Down" : "Operational"}</div>
+      </div>
+      <div class="bars">${c.days.map(bar).join("")}</div>
+      <div class="scale"><span class="long">90 days ago</span><span class="short">30 days ago</span><span>${c.uptime.toFixed(2)}% uptime</span><span>Today</span></div>
+    </div>`).join("");
+  document.getElementById("incidents").innerHTML = s.incidents.length
+    ? s.incidents.map((i) => `
+      <div class="inc">
+        <div class="tag ${i.state === "resolved" ? "" : "open"}">${i.state === "resolved" ? "Resolved" : "Investigating"}</div>
+        <div class="name">${esc(i.title)}</div>
+        <div class="when">${when(i.started)}${i.resolved ? ` – ${when(i.resolved)}` : ""}</div>
+        ${i.updates.map((u) => `<div class="up"><span class="when">${when(u.at)}</span><p>${esc(u.text)}</p></div>`).join("")}
+      </div>`).join("")
+    : `<p class="empty">No incidents in the last 90 days.</p>`;
+  document.getElementById("since").textContent = `Uptime history starts ${day(s.since)}. Days are in UTC.`;
+}
+
+fetch("status.json", { cache: "no-store" })
+  .then((r) => r.json())
+  .then(render)
+  .catch(() => {
+    const b = document.getElementById("banner");
+    b.textContent = "Couldn't load the status. Try again in a minute.";
+  });
+</script>
+</body>
+</html>

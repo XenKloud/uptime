@@ -1,0 +1,11 @@
+{
+  "since": "2026-11-26",
+  "region": "Canada (Beauharnois, Quebec)",
+  "components": [
+    { "name": "Console", "about": "console.xenkloud.com", "targets": ["console.xenkloud.com"] },
+    { "name": "Accounts and Billing", "about": "Sign-in, teams, plans and invoices", "targets": ["xk-id api health", "id.xenkloud.com"] },
+    { "name": "Sites", "about": "Hosting, deploys and Forms", "targets": ["sites api health", "api.xenkloud.com", "xksites.ca"] },
+    { "name": "Email Service", "about": "Sending and the Email dashboard", "targets": ["app.emitemail.com", "emitemail.com"] },
+    { "name": "Website", "about": "xenkloud.com", "targets": ["xenkloud.com", "www.xenkloud.com"] }
+  ]
+}

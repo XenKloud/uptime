@@ -1,8 +1,12 @@
-# Every 5 minutes (GitHub may start a run a few minutes late when it is busy).
+# Every 5 minutes (GitHub may start a run a few minutes late when it is busy): check every address,
+# then rebuild status.xenkloud.com and publish it only when it changed.
 name: check
 on:
   schedule:
     - cron: "*/5 * * * *"
+  push:
+    branches: [main]
+    paths: [page/**, status.mjs, components.json]
   workflow_dispatch:
 permissions:
   contents: read
@@ -14,6 +18,8 @@ jobs:
   check:
     runs-on: ubuntu-latest
     timeout-minutes: 5
+    outputs:
+      changed: ${{ steps.status.outputs.changed }}
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
@@ -22,3 +28,23 @@ jobs:
       - run: node check.mjs
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - id: status
+        run: node status.mjs
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - if: steps.status.outputs.changed == 'true'
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: _site
+  publish:
+    needs: check
+    if: needs.check.outputs.changed == 'true'
+    runs-on: ubuntu-latest
+    permissions:
+      pages: write
+      id-token: write
+    environment:
+      name: github-pages
+      url: https://status.xenkloud.com
+    steps:
+      - uses: actions/deploy-pages@v4
